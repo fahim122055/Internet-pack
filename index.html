@@ -3,100 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MBusiness Online Shop</title>
-
+<title>MBusiness Shop</title>
 <style>
-body { font-family: Arial; margin:0; background:#f4f4f4; }
+/* Fonts & Reset */
+body, h1, h2, h3, p { margin:0; padding:0; }
+body { font-family: 'Poppins', sans-serif; background:#f0f2f5; color:#333; }
 
+/* Header */
 header {
-    background: linear-gradient(45deg,#0d6efd,#00c6ff);
+    background: linear-gradient(135deg,#0d6efd,#6610f2);
     color:white;
     text-align:center;
-    padding:20px;
+    padding:25px 10px;
+    border-bottom-left-radius:25px;
+    border-bottom-right-radius:25px;
 }
+header h1 { font-size:28px; margin-bottom:5px; }
+header p { font-size:16px; }
 
-nav {
-    background:#111;
-    text-align:center;
-    padding:10px;
-}
-nav a {
-    color:white;
-    margin:10px;
-    text-decoration:none;
-}
+/* Navigation */
+nav { display:flex; justify-content:center; gap:20px; background:#111; padding:12px 0; }
+nav a { color:white; font-weight:600; text-decoration:none; transition:0.3s; }
+nav a:hover { color:#0d6efd; }
 
+/* Hero */
 .hero {
     text-align:center;
-    padding:40px;
-    background:#fff;
+    margin:20px 10px;
+    padding:25px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
+.hero h2 { font-size:24px; color:#0d6efd; margin-bottom:10px; }
+.hero p { font-size:16px; color:#555; }
 
-.products {
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    padding:20px;
-}
-
+/* Products */
+.products { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:15px; padding:10px; }
 .product {
     background:white;
-    width:230px;
-    margin:10px;
     padding:15px;
     border-radius:15px;
     text-align:center;
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
     transition:0.3s;
 }
-.product:hover { transform:scale(1.05); }
-
-.product img {
-    width:100%;
-    border-radius:10px;
-}
-
-button {
-    background:#28a745;
+.product:hover { transform:scale(1.03); }
+.product img { width:100%; border-radius:12px; margin-bottom:10px; }
+.product h3 { margin-bottom:5px; color:#111; }
+.product p { margin-bottom:10px; color:#28a745; font-weight:600; }
+.product button {
+    background:#0d6efd;
     color:white;
-    padding:10px;
     border:none;
-    margin-top:10px;
+    padding:10px 15px;
+    border-radius:8px;
     cursor:pointer;
-    border-radius:5px;
+    font-weight:600;
+    transition:0.3s;
 }
+.product button:hover { background:#6610f2; }
 
+/* Cart Summary */
 .cart-summary {
-    background:#fff;
-    padding:15px;
-    margin:20px auto;
-    width:90%;
+    background:white;
     max-width:400px;
-    border-radius:10px;
+    margin:20px auto;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
     display:none;
 }
-
-.payment {
+.cart-summary h3 { margin-bottom:15px; color:#0d6efd; }
+.cart-summary p { margin-bottom:8px; }
+.cart-summary button {
+    background:#28a745;
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
     margin-top:10px;
 }
+.cart-summary button:hover { background:#20c997; }
 
+/* WhatsApp floating button */
 .whatsapp {
     position:fixed;
     bottom:20px;
     right:20px;
     background:#25D366;
     color:white;
-    padding:15px;
+    padding:18px;
     border-radius:50%;
-    font-size:20px;
+    font-size:22px;
     text-decoration:none;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    transition:0.3s;
 }
+.whatsapp:hover { transform:scale(1.1); }
 
-footer {
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:15px;
+/* Payment Select */
+.payment { margin-top:10px; }
+.payment select {
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-weight:600;
 }
 </style>
 </head>
@@ -104,23 +120,23 @@ footer {
 <body>
 
 <header>
-<h1>MBusiness Online Shop</h1>
-<p>Best Deals Everyday</p>
+<h1>MBusiness Shop</h1>
+<p>House Offer, Family Bag, Gift Pack, Regular Pack</p>
 </header>
 
 <nav>
 <a href="#">Home</a>
 <a href="#">Products</a>
+<a href="#">Offers</a>
 <a href="#">Contact</a>
 </nav>
 
 <div class="hero">
-<h2>স্বাগতম MBusiness এ</h2>
-<p>সেরা পণ্য, সেরা দাম</p>
+<h2>স্বাগতম MBusiness এ!</h2>
+<p>সেরা পণ্য, সেরা দাম, এখনই অর্ডার করুন</p>
 </div>
 
 <div class="products">
-
 <div class="product" data-name="House Offer" data-price="1500">
 <img src="https://via.placeholder.com/200">
 <h3>House Offer</h3>
@@ -148,7 +164,6 @@ footer {
 <p>৳500</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
-
 </div>
 
 <div class="cart-summary" id="cartSummary">
@@ -172,36 +187,22 @@ footer {
 <a class="whatsapp" href="https://wa.me/8801618599077">💬</a>
 
 <footer>
-<p>© 2026 MBusiness</p>
+<p>© 2026 MBusiness | All Rights Reserved</p>
 </footer>
 
 <script>
 let cart = [];
 
 function addToCart(btn){
-    let p = btn.parentElement;
-    let name = p.dataset.name;
-    let price = parseInt(p.dataset.price);
+    let product = btn.closest('.product');
+    let name = product.dataset.name;
+    let price = parseInt(product.dataset.price);
 
-    cart.push({name, price});
+    let existing = cart.find(item => item.name === name);
+    if(existing) existing.qty += 1;
+    else cart.push({name, price, qty:1});
+
     updateCart();
-}
-
-function updateCart(){
-    let div = document.getElementById("cartItems");
-    div.innerHTML="";
-    let total=0;
-
-    cart.forEach((item,i)=>{
-        div.innerHTML += `
-        <p>${item.name} - ৳${item.price}
-        <button onclick="removeItem(${i})">❌</button></p>`;
-        total += item.price;
-    });
-
-    document.getElementById("cartTotal").innerText = total;
-    document.getElementById("cartSummary").style.display =
-        cart.length>0 ? "block":"none";
 }
 
 function removeItem(i){
@@ -209,27 +210,33 @@ function removeItem(i){
     updateCart();
 }
 
-function checkout(){
-    let method = document.getElementById("paymentMethod").value;
-
-    let msg = "🛒 Order Details:\n";
+function updateCart(){
+    let cartDiv = document.getElementById('cartItems');
+    cartDiv.innerHTML='';
     let total=0;
-
-    cart.forEach(item=>{
-        msg += `${item.name} - ৳${item.price}\n`;
-        total += item.price;
+    cart.forEach((item,i)=>{
+        let itemTotal = item.price*item.qty;
+        cartDiv.innerHTML+=`<p>${item.name} (${item.qty}) - ৳${itemTotal} <button onclick="removeItem(${i})">❌</button></p>`;
+        total+=itemTotal;
     });
+    document.getElementById('cartTotal').innerText = total;
+    document.getElementById('cartSummary').style.display = cart.length>0?'block':'none';
+}
 
-    msg += `\nTotal: ৳${total}`;
-    msg += `\nPayment Method: ${method}`;
-
-    if(method=="bKash"){
-        msg += "\nbKash: 01618599077";
-    } else if(method=="Nagad"){
-        msg += "\nNagad: 01624228476";
-    } else {
-        msg += "\nRocket: 01624228476";
-    }
+function checkout(){
+    if(cart.length===0) return alert("Cart is empty!");
+    let method = document.getElementById('paymentMethod').value;
+    let msg="আমি অর্ডার করতে চাই:\n";
+    let total=0;
+    cart.forEach(item=>{
+        let itemTotal = item.price*item.qty;
+        msg+=`${item.name} (${item.qty}) - ৳${itemTotal}\n`;
+        total+=itemTotal;
+    });
+    msg+=`মোট: ৳${total}\nPayment Method: ${method}`;
+    if(method=="bKash") msg+="\nbKash: 01618599077";
+    else if(method=="Nagad") msg+="\nNagad: 01624228476";
+    else msg+="\nRocket: 01624228476";
 
     window.open("https://wa.me/8801618599077?text="+encodeURIComponent(msg));
 }

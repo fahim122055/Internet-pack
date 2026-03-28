@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBusiness Online Shop</title>
+<style>
+body { font-family: Arial; margin:0; background:#f4f4f4; }
+header { background:#0d6efd; color:white; text-align:center; padding:20px; }
+nav { background:#111; text-align:center; padding:10px; }
+nav a { color:white; margin:10px; text-decoration:none; font-weight:bold; }
+.hero { background:#fff; padding:30px 20px; text-align:center; }
+.products { display:flex; flex-wrap:wrap; justify-content:center; padding:20px; }
+.product { background:white; width:220px; margin:10px; padding:15px; border-radius:10px; text-align:center; }
+.product img { width:100%; border-radius:10px; }
+button { background:#28a745; color:white; padding:10px; border:none; margin-top:10px; cursor:pointer; }
+footer { background:#111; color:white; text-align:center; padding:15px; margin-top:20px; }
+.whatsapp { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:15px; border-radius:50%; font-size:20px; text-decoration:none; }
+.offer { background:red; color:white; padding:10px; text-align:center; font-weight:bold; margin-bottom:15px; border-radius:5px; }
+.cart-summary { background:#fff; padding:15px; margin:20px auto; width:90%; max-width:400px; border-radius:10px; display:none; }
+.cart-summary h3 { margin-top:0; }
+</style>
+</head>
+<body>
+
+<header>
+<h1>MBusiness Online Shop</h1>
+<p>House Offer, Family Bag, Gift Pack, Regular Pack</p>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Products</a>
+<a href="#">Offers</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="hero">
+<h1>স্বাগতম MBusiness এ!</h1>
+<p>সেরা পণ্য, সেরা দাম</p>
+</div>
+
+<div class="products">
+<div class="product" data-name="House Offer" data-price="1500">
+<div class="offer">🔥 Today’s Offer!</div>
+<img src="https://via.placeholder.com/200">
+<h3>House Offer</h3>
+<p>৳1500</p>
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="product" data-name="Family Bag" data-price="1200">
+<img src="https://via.placeholder.com/200">
+<h3>Family Bag</h3>
+<p>৳1200</p>
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="product" data-name="Gift Pack" data-price="1000">
+<img src="https://via.placeholder.com/200">
+<h3>Gift Pack</h3>
+<p>৳1000</p>
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="product" data-name="Regular Pack" data-price="500">
+<img src="https://via.placeholder.com/200">
+<h3>Regular Pack</h3>
+<p>৳500</p>
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+</div>
+
+<div class="cart-summary" id="cartSummary">
+<h3>Cart Summary</h3>
+<div id="cartItems"></div>
+<p><strong>Total: ৳<span id="cartTotal">0</span></strong></p>
+<button onclick="checkoutCart()">Checkout via WhatsApp</button>
+</div>
+
+<a class="whatsapp" href="https://wa.me/8801618599077">💬</a>
+
+<footer>
+<p>© 2026 MBusiness | All Rights Reserved</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(btn){
+    let product = btn.parentElement;
+    let name = product.dataset.name;
+    let price = parseInt(product.dataset.price);
+    cart.push({name, price});
+    updateCart();
+}
+
+function updateCart(){
+    let cartDiv = document.getElementById('cartItems');
+    cartDiv.innerHTML = '';
+    let total = 0;
+    cart.forEach(item => {
+        cartDiv.innerHTML += `<p>${item.name} - ৳${item.price}</p>`;
+        total += item.price;
+    });
+    document.getElementById('cartTotal').innerText = total;
+    document.getElementById('cartSummary').style.display = cart.length > 0 ? 'block' : 'none';
+}
+
+function checkoutCart(){
+    if(cart.length === 0) return alert("Cart is empty!");
+    let msg = "আমি অর্ডার করতে চাইঃ\n";
+    let total = 0;
+    cart.forEach(item => {
+        msg += `${item.name} - ৳${item.price}\n`;
+        total += item.price;
+    });
+    msg += `মোট: ৳${total}\n`;
+    msg += "Payment: bKash → 01618599077, Nagad → 01624228476, Rocket → 01624228476";
+    window.open("https://wa.me/8801618599077?text=" + encodeURIComponent(msg));
+}
+</script>
+
+</body>
+</html>
